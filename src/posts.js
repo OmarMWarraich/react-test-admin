@@ -1,5 +1,6 @@
 import  * as React from 'react';
-import { 
+import {
+    Filter, 
     List, 
     Datagrid, 
     TextField, 
@@ -13,8 +14,20 @@ import {
     TextInput,
  } from 'react-admin';
 
-export const PostList = props => (
-    <List {...props}>
+ const PostFilter = (props) => (
+    <Filter {...props}>
+        <TextInput label="Search" source="q" alwaysOn />
+        <ReferenceInput label="User" source="userId" reference="users" allowEmpty>
+            <SelectInput optionText="name" />
+        </ReferenceInput>
+    </Filter>
+);
+
+
+
+
+export const PostList = (props) => (
+    <List filters= {<PostFilter />} {...props}>
         {/* <Datagrid rowClick="edit"> */}
             <Datagrid>
                 <TextField source="id" />
